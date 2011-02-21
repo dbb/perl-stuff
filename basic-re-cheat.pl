@@ -6,7 +6,7 @@ use 5.010;
 # I use this file as a reference for basic regular expressions because I have
 # a terrible time remembering syntax. This file is "valid" Perl in that it
 # can be executed without any serious errors, but the only reason for that is
-# proper syntac highlighting in Vim.
+# proper syntax highlighting in Vim.
 
 
 my $metacharacters = ' {} [] () ^ $ . | * + ? \ ' ;
