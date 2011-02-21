@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>/mnt/media_files/source/github/perl-stuff/basic-re-cheat.pl.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v6">
+<meta name="syntax" content="perl">
+<meta name="settings" content="use_css,number_lines">
+<style type="text/css">
+<!--
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+.lnr { color: #a52a2a; }
+.Special { color: #6a5acd; }
+.Identifier { color: #008b8b; }
+.Comment { color: #0000ff; }
+.Constant { color: #ff00ff; }
+.Statement { color: #a52a2a; font-weight: bold; }
+.PreProc { color: #a020f0; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="lnr"> 1 </span><span class="PreProc">#!/usr/bin/env perl </span>
+<span class="lnr"> 2 </span><span class="Statement">use </span><span class="Constant">5.010</span>;
+<span class="lnr"> 3 </span>
+<span class="lnr"> 4 </span><span class="Comment"># <a href="https://github.com/dbbolton/">https://github.com/dbbolton/</a></span>
+<span class="lnr"> 5 </span><span class="Comment">#</span>
+<span class="lnr"> 6 </span><span class="Comment"># I use this file as a reference for basic regular expressions because I have</span>
+<span class="lnr"> 7 </span><span class="Comment"># a terrible time remembering syntax. This file is &quot;valid&quot; Perl in that it</span>
+<span class="lnr"> 8 </span><span class="Comment"># can be executed without any serious errors, but the only reason for that is</span>
+<span class="lnr"> 9 </span><span class="Comment"># proper syntax highlighting in Vim.</span>
+<span class="lnr">10 </span>
+<span class="lnr">11 </span>
+<span class="lnr">12 </span><span class="Statement">my</span> <span class="Identifier">$metacharacters</span> = <span class="Constant">'</span><span class="Constant"> {} [] () ^ $ . | * + ? \ </span><span class="Constant">'</span> ;
+<span class="lnr">13 </span>
+<span class="lnr">14 </span><span class="Comment"># Character classes</span>
+<span class="lnr">15 </span><span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Constant">A Latin letter</span><span class="Constant">&quot;</span> <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">[A-Za-z]</span><span class="Statement">/</span>;
+<span class="lnr">16 </span>
+<span class="lnr">17 </span><span class="Comment"># Grouping</span>
+<span class="lnr">18 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">a is $1</span><span class="Constant">'</span> <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">(</span><span class="Constant">a</span><span class="Special">)</span><span class="Statement">/</span>;
+<span class="lnr">19 </span>
+<span class="lnr">20 </span><span class="Comment"># Anchors</span>
+<span class="lnr">21 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">Starts with &quot;a&quot;</span><span class="Constant">'</span> <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">^a</span><span class="Statement">/</span>;
+<span class="lnr">22 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">Ends with &quot;a&quot;</span><span class="Constant">'</span> <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a$</span><span class="Statement">/</span>;
+<span class="lnr">23 </span>
+<span class="lnr">24 </span><span class="Comment"># Alternation / &quot;or&quot;</span>
+<span class="lnr">25 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;a&quot; or &quot;b&quot;</span><span class="Constant">'</span> <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a|b</span><span class="Statement">/</span>;
+<span class="lnr">26 </span>
+<span class="lnr">27 </span><span class="Comment"># Dot</span>
+<span class="lnr">28 </span><span class="Statement">my</span> <span class="Identifier">$anything_but_newline</span> = <span class="Constant">'</span><span class="Constant">.</span><span class="Constant">'</span>;
+<span class="lnr">29 </span>
+<span class="lnr">30 </span><span class="Comment"># Counts</span>
+<span class="lnr">31 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;a&quot; zero or more times</span><span class="Constant">'</span>  <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a</span><span class="Special">*</span><span class="Statement">/</span>;
+<span class="lnr">32 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;a&quot; one ore more times</span><span class="Constant">'</span>  <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a</span><span class="Special">+</span><span class="Statement">/</span>;
+<span class="lnr">33 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">optional &quot;a&quot;</span><span class="Constant">'</span>    <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a</span><span class="Special">?</span><span class="Statement">/</span>;
+<span class="lnr">34 </span>
+<span class="lnr">35 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;a&quot; exactly 2 times</span><span class="Constant">'</span> <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a</span><span class="Special">{2}</span><span class="Statement">/</span>;
+<span class="lnr">36 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;a&quot; 3 to 4 times</span><span class="Constant">'</span>    <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a</span><span class="Special">{3,4}</span><span class="Statement">/</span>;
+<span class="lnr">37 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;a&quot; 5 or more times</span><span class="Constant">'</span> <span class="Statement">if</span> <span class="Statement">/</span><span class="Constant">a</span><span class="Special">{5,}</span><span class="Statement">/</span>;
+<span class="lnr">38 </span>
+<span class="lnr">39 </span><span class="Comment"># abbreviations</span>
+<span class="lnr">40 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">BOUNDARY</span><span class="Constant">'</span>        <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\b</span><span class="Statement">/</span>;
+<span class="lnr">41 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">not BOUNDARY</span><span class="Constant">'</span>    <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\B</span><span class="Statement">/</span>;
+<span class="lnr">42 </span>
+<span class="lnr">43 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">DIGIT</span><span class="Constant">'</span>           <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\d</span><span class="Statement">/</span>;
+<span class="lnr">44 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">not DIGIT</span><span class="Constant">'</span>       <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\D</span><span class="Statement">/</span>;
+<span class="lnr">45 </span>
+<span class="lnr">46 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">WHITESPACE</span><span class="Constant">'</span>      <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\s</span><span class="Statement">/</span>;
+<span class="lnr">47 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">not WHITESPACE</span><span class="Constant">'</span>  <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\S</span><span class="Statement">/</span>;
+<span class="lnr">48 </span>
+<span class="lnr">49 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">WORDCHAR</span><span class="Constant">'</span>        <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\w</span><span class="Statement">/</span>;
+<span class="lnr">50 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">not WORDCHAR</span><span class="Constant">'</span>    <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">\W</span><span class="Statement">/</span>;
+<span class="lnr">51 </span>
+<span class="lnr">52 </span><span class="Comment"># a note on '\w' and '\d': they extend beyond [A-Za-z0-9_] and [0-9]</span>
+<span class="lnr">53 </span><span class="Comment"># respectively (non-Roman letters and non-Arabic digits are included)</span>
+<span class="lnr">54 </span>
+<span class="lnr">55 </span><span class="Comment"># Backreferences</span>
+<span class="lnr">56 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;aa&quot;</span><span class="Constant">'</span>    <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">(</span><span class="Constant">a</span><span class="Special">)\1</span><span class="Statement">/</span>;
+<span class="lnr">57 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;abba&quot;</span><span class="Constant">'</span>  <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">(</span><span class="Constant">a</span><span class="Special">)(</span><span class="Constant">b</span><span class="Special">)\2\1</span><span class="Statement">/</span>;
+<span class="lnr">58 </span><span class="Statement">say</span> <span class="Constant">'</span><span class="Constant">&quot;abba&quot;</span><span class="Constant">'</span>  <span class="Statement">if</span> <span class="Statement">/</span><span class="Special">(</span><span class="Constant">a</span><span class="Special">)(</span><span class="Constant">b</span><span class="Special">)\g{-1}\g{-2}</span><span class="Statement">/</span>;
+<span class="lnr">59 </span>
+<span class="lnr">60 </span><span class="Statement">my</span> <span class="Identifier">$named_backref</span> = <span class="Constant">'</span><span class="Constant">(?&lt;nom&gt;abba)</span><span class="Constant">'</span>;
+<span class="lnr">61 </span><span class="Statement">say</span> <span class="Constant">&quot;</span><span class="Identifier">$+</span><span class="Constant">{nom}</span><span class="Constant">&quot;</span>   <span class="Statement">if</span> <span class="Statement">/</span><span class="Identifier">$named_backref</span><span class="Statement">/</span>;
+<span class="lnr">62 </span>
+</pre>
+</body>
+</html>
