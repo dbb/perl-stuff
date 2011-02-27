@@ -8,8 +8,7 @@ use 5.010;
 # can be executed without any serious errors, but the only reason for that is
 # proper syntax highlighting in Vim.
 
-
-my $metacharacters = ' {} [] () ^ $ . | * + ? \ ' ;
+my $metacharacters = ' {} [] () ^ $ . | * + ? \ ';
 
 # Character classes
 say "A Latin letter" if /[A-Za-z]/;
@@ -19,7 +18,7 @@ say 'a is $1' if /(a)/;
 
 # Anchors
 say 'Starts with "a"' if /^a/;
-say 'Ends with "a"' if /a$/;
+say 'Ends with "a"'   if /a$/;
 
 # Alternation / "or"
 say '"a" or "b"' if /a|b/;
@@ -28,35 +27,35 @@ say '"a" or "b"' if /a|b/;
 my $anything_but_newline = '.';
 
 # Counts
-say '"a" zero or more times'  if /a*/;
-say '"a" one ore more times'  if /a+/;
-say 'optional "a"'    if /a?/;
+say '"a" zero or more times' if /a*/;
+say '"a" one ore more times' if /a+/;
+say 'optional "a"'           if /a?/;
 
 say '"a" exactly 2 times' if /a{2}/;
 say '"a" 3 to 4 times'    if /a{3,4}/;
 say '"a" 5 or more times' if /a{5,}/;
 
-# abbreviations
-say 'BOUNDARY'        if /\b/;
-say 'not BOUNDARY'    if /\B/;
+# Abbreviations
+say 'BOUNDARY'          if /\b/;
+say 'not BOUNDARY'      if /\B/;
 
-say 'DIGIT'           if /\d/;
-say 'not DIGIT'       if /\D/;
+say 'DIGIT'             if /\d/;
+say 'not DIGIT'         if /\D/;
 
-say 'WHITESPACE'      if /\s/;
-say 'not WHITESPACE'  if /\S/;
+say 'WHITESPACE'        if /\s/;
+say 'not WHITESPACE'    if /\S/;
 
-say 'WORDCHAR'        if /\w/;
-say 'not WORDCHAR'    if /\W/;
+say 'WORDCHAR'          if /\w/;
+say 'not WORDCHAR'      if /\W/;
 
 # a note on '\w' and '\d': they extend beyond [A-Za-z0-9_] and [0-9]
 # respectively (non-Roman letters and non-Arabic digits are included)
 
 # Backreferences
-say '"aa"'    if /(a)\1/;
-say '"abba"'  if /(a)(b)\2\1/;
-say '"abba"'  if /(a)(b)\g{-1}\g{-2}/;
+say '"aa"'   if /(a)\1/;
+say '"abba"' if /(a)(b)\2\1/;
+say '"abba"' if /(a)(b)\g{-1}\g{-2}/;
 
 my $named_backref = '(?<nom>abba)';
-say "$+{nom}"   if /$named_backref/;
+say "$+{nom}" if /$named_backref/;
 
