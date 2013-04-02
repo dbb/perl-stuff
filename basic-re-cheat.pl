@@ -28,10 +28,10 @@ my $anything_but_newline = '.';
 
 # Counts
 say '"a" zero or more times' if /a*/;
-say '"a" one ore more times' if /a+/;
+say '"a" one or more times'  if /a+/;
 say 'optional "a"'           if /a?/;
 
-say '"a" exactly 2 times' if /a{2}/;
+say '"a" exactly 2 times' if /a{2,2}/;
 say '"a" 3 to 4 times'    if /a{3,4}/;
 say '"a" 5 or more times' if /a{5,}/;
 
